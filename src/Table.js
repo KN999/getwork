@@ -28,22 +28,34 @@ function Table() {
     }, []);
 
     const [query, setQuery] = useState('');
+    const onChange = () => {
+      alert('onChange called');
+    }
 
     const onClick = () => {
-      let results = []
-      for(let i=0; i<row.data.length; i++) {
-        for(key in row.data[i]) {
-          if(row.data[i][key].indexOf(query)!=-1) {
-            results.push(row.data[i]);
-          }
-        }
-      }
+      alert('onClick called');
     }
+    // const onClick = () => {
+    //   let results = []
+    //   for(let i=0; i<row.data.length; i++) {
+    //     for(key in row.data[i]) {
+    //       if(row.data[i][key].indexOf(query)!=-1) {
+    //         results.push(row.data[i]);
+    //       }
+    //     }
+    //   }
+    // }
   
    return (
-    <div style={{ height: 400, width: '100%' }} className="margin-50">
-      <DataGrid rows={row.data} columns={columns} pageSize={5} checkboxSelection />
-    </div>
+     <div style={{ height: 400, width: '100%' }}>
+       <div className="margin-100">
+         <input type='text' onChange={(e) => {onChange(e)}}/>
+         <input type='submit' onClick={(e) => {onClick()}}/>
+       </div>
+       <div style={{ height: 400, width: '100%' }} >
+        <DataGrid rows={row.data} columns={columns} pageSize={5} checkboxSelection />
+      </div>
+     </div>
    );
   }
 
